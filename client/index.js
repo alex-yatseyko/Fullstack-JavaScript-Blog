@@ -7,8 +7,8 @@ const card = post => {
           <small>${new Date(post.date).toLocaleDateString()}</small>
       </div>
       <div class="card-action">
-          <button class="btn btn-small red js-remove" data-id="${post._id}">
-              <i class="material-icons">delete</i>
+          <button class="btn btn-small red js-remove" data-id="${post._id}" data-title="${post.title}">
+              <i class="material-icons js-remove" data-id="${post._id}" data-title="${post.title}">delete</i>
           </button>
       </div>
   </div>
@@ -85,13 +85,16 @@ function onCreatePost() {
 
 function onDeletePost(event) {
 	if (event.target.classList.contains('js-remove')) {
-		const decision = confirm('Ви впевнені що хочете видалит цей пост?')
+		const title = event.target.getAttribute('data-title')
+		//console.log(title)
+		const decision = confirm(`Ви впевнені що хочете видалити пост ${title}?`)
 
 		if(decision) {
 			const id = event.target.getAttribute('data-id')
+			//console.log(id)
 
 			PostApi.remove(id).then(() => {
-				const postIndex = posts.findIndex( post => post.id === id)
+				const postIndex = posts.findIndex( post => post._id === id)
 				posts.splice(postIndex, 1)
 				renderPosts(posts)
 			})
