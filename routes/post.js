@@ -3,7 +3,7 @@ const router = express.Router()
 const Post = require('../models/Post')
 
 // http://localhost:5000/api/post (GET)
-router.get('/', async (req, res) => {
+router.get('localhost:5000/', async (req, res) => {
 	// Post.find({}).then((posts) => {
 	// 	// ...
 	// })

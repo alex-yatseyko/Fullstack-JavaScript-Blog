@@ -16,9 +16,32 @@ const card = post => {
 	`
 }
 
+let posts = []
+const BASE_URL = '/api/post'
+
 // Request to the Back-End
 class PostApi {
 	static fetch() {
-		
+		return fetch(BASE_URL, {method: 'get'})
+			.then(res => {
+				res.json()
+			})
+	}
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+	PostApi.fetch().then(backendPosts => {
+		posts = backendPosts.concat()
+		renderPosts(posts)
+	})
+})
+
+function renderPosts(_posts = []) {
+	const $posts = document.querySelector('#posts')
+
+	if (_posts.length > 0) {
+		$posts.innerHTML = _posts.map(post => card(post)).join(' ')
+	} else {
+		$posts.innerHTML = `<div class="center">Постів поки що немає</div>`
 	}
 }
