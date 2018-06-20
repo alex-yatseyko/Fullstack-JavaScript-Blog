@@ -9,9 +9,10 @@ const clientPath = path.join(__dirname, 'client')
 
 mongoose.connect(keys.mongoURI)
 	.then(() => console.log('MongoDB connected')) // In case connetion is OK
-	.catch(err => console.error(err)) // In case something is wrond
+	.catch(err => console.error(err)) // In case something is wrong
+	
 const app = express()
-app.use('/api/', postRouter)
+app.use('/api/post', postRouter)
 app.use(express.static(clientPath))
 
 app.listen(port, () => {
