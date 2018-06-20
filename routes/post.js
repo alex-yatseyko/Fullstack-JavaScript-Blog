@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
 // http://localhost:5000/api/post/:id (DELETE)
 router.delete('/:postId', async (req, res) => {
 	await Post.remove({_id: req.params.postId})
-	res.status(200)json({
+	res.status(200).json({
 		message: 'Видалено'
 	})
 })
