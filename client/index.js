@@ -39,6 +39,6 @@ function renderPosts(_posts = []) {
   if (_posts.length > 0) {
     $posts.innerHTML = _posts.map(post => card(post)).join(' ')
   } else {
-    $posts.innerHTML = `<div class="center">Дописів ще немає</div>`
+    $posts.innerHTML = `<h4 class="center no-posts">Дописів ще немає</h4>`
   }
 }
